@@ -106,6 +106,7 @@ void FloatVector_print(const FloatVector *vec) {
     puts("----------------------------\n");
 }
 
+// Remove elemento da posição 'index'. Move todos elementos subsequentes para a esquerda após a remoção. Se o índice for inválido, nada acontece.
 void FloatVector_remove(FloatVector *vec, int index){
     if (index < 0 || index >= vec->size) {
         fprintf(stderr, "ERROR in 'set'\n");
@@ -118,4 +119,27 @@ void FloatVector_remove(FloatVector *vec, int index){
    }
 
    vec->size --;
+}
+
+//limpa o vetor, removendo todos seus elementos
+void FloatVector_erase(FloatVector *vec){
+    free(vec->data);
+    vec->data = NULL;
+    vec->size = 0;
+    vec->capacity = 0;
+}
+
+//retorna uma cópia/clone do vetor
+
+FloatVector *FloatVector_clone(FloatVector *vec){
+    FloatVector *vec_clone = (FloatVector*) calloc(1, sizeof(FloatVector));
+    vec_clone->size = vec->size;
+    vec_clone->capacity = vec->capacity;
+    vec_clone->data = (float*) calloc(vec->capacity, sizeof(float));
+    
+    for(int i = 0; i < vec->size; i++){
+        vec_clone->data[i] = vec->data[i];
+    }
+    
+    return vec_clone;
 }
