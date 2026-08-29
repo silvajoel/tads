@@ -1,5 +1,6 @@
 #include "float_vector.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct float_vector{
     int capacity; // num máximo de elementos
@@ -26,4 +27,29 @@ void destroy(FloatVector **vec_ref){
 
     free(vec->data);
     free(vec);
+    *vec_ref = NULL;
+}
+
+void append(FloatVector *vec, float val){
+
+    if(vec->capacity == vec->size){
+        fprintf(stderr, "ERROR in 'append'\n");
+        fprintf(stderr, "Vector is full\n");
+        exit(EXIT_FAILURE);
+    }
+    vec->data[vec->size] = val;
+    vec->size++;
+    
+}
+
+void print(const FloatVector *vec){
+    puts("---------------------------------------");
+    printf("Size: %d\n", vec->size);
+    printf("Capacity: %d\n", vec->capacity);
+    puts("---");
+    
+    for(int i = 0; i < vec->size; i++){
+        printf("[%d] = %f\n", i, vec->data[i]);
+    }
+    puts("---------------------------------------\n");
 }
