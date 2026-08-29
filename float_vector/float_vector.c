@@ -105,3 +105,17 @@ void FloatVector_print(const FloatVector *vec) {
     }
     puts("----------------------------\n");
 }
+
+void FloatVector_remove(FloatVector *vec, int index){
+    if (index < 0 || index >= vec->size) {
+        fprintf(stderr, "ERROR in 'set'\n");
+        fprintf(stderr, "Index [%d] is out of bounds: [0, %d]\n", index, vec->size - 1);
+        exit(EXIT_FAILURE);
+    }
+
+   for(int i = index; i < vec->size - 1; i++){
+    vec->data[i] = vec->data[i+1];
+   }
+
+   vec->size --;
+}
