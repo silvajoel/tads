@@ -4,10 +4,10 @@ void bubbleSorte(int *V, int N){
     {
         continua = 0;
         for(i = 0; i < fim - 1; i++){
-            if(V[i] > V[i+1]){
-                aux = V[i];
+            if(V[i] > V[i+1]){ 15 > 10
+                aux = V[i];  
                 V[i] = V[i+1];
-                V[i+1] = aux;
+                V[i+1] = aux; 
                 continua = 1;
             }
         }
